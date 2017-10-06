@@ -10,13 +10,20 @@ int main()
     vector <vector <Pixel> > bmp;
     Pixel rgb;
     int Average;
+    string fileName;
 
     image.open("project2image.bmp");
     bmp = image.toPixelMatrix();
     
-    cout<<"project2image.bmp has been loaded. It is "<<bmp[0].size()<<" pixels wide and "<<bmp.size()<<" pixels high."<<endl;
+    // cout<<"project2image.bmp has been loaded. It is "<<bmp[0].size()<<" pixels wide and "<<bmp.size()<<" pixels high."<<endl;
     // cout<<bmp.size()<<" "<<endl; 
     // cout<<bmp[0].size()<<" "<<endl; 
+    
+    cout<<"What's the file's name? [it must be in BMP format!]"<<endl;
+    cin>>fileName;
+    image.open(fileName);
+    cout<<fileName<<" has been loaded"<<endl;
+    bmp = image.toPixelMatrix();
 
     // do a for loop to add bmp[r][c].red + bmp[r][c].blue + bmp[r][c].green = average/3
     //then make the average = bmp[r][c].red and bmp[r][c].blue and bmp[r][c].green
@@ -30,7 +37,7 @@ int main()
                  rgb.red = Average;
                  rgb.green = Average;
                  rgb.blue = Average;
-                 bmp[r][c] = rgb
+                 bmp[r][c] = rgb;
              }
       }
      
