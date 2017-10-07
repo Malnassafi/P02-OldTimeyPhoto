@@ -11,35 +11,42 @@ int main()
     Pixel rgb;
     int Average;
     string fileName;
-
-    image.open("project2image.bmp");
-    bmp = image.toPixelMatrix();
+   
+   // image.open("project2image.bmp");
+   // bmp = image.toPixelMatrix();
     
     // cout<<"project2image.bmp has been loaded. It is "<<bmp[0].size()<<" pixels wide and "<<bmp.size()<<" pixels high."<<endl;
     // cout<<bmp.size()<<" "<<endl; 
     // cout<<bmp[0].size()<<" "<<endl; 
     
     cout<<"What's the file's name? [it must be in BMP format!]"<<endl;
-    cin>>fileName;
+    cin>>fileName;/*
+    if(//file does not exist)
+    {   
+        cout<<*/
+
+
+
+
+
     image.open(fileName);
     cout<<fileName<<" has been loaded"<<endl;
     bmp = image.toPixelMatrix();
 
-    // do a for loop to add bmp[r][c].red + bmp[r][c].blue + bmp[r][c].green = average/3
-    //then make the average = bmp[r][c].red and bmp[r][c].blue and bmp[r][c].green
+    // do a for loop to add rgb.red + rgb.blue + rgb.green = average/3
+    //then make the average = rgb.red and rgb.blue and rgb.green
     for(int r=0; r<bmp.size();r++)
-      {
-         for(int c=0; c<bmp[0].size();c++)
-             {
-                 rgb = bmp[r][c];
-                 Average = (rgb.red + rgb.green + rgb.blue)/3;
-                 // cout<<Average<<" "<<endl;
-                 rgb.red = Average;
-                 rgb.green = Average;
-                 rgb.blue = Average;
-                 bmp[r][c] = rgb;
-             }
-      }
+    {
+        for(int c=0; c<bmp[0].size();c++)
+        {
+            rgb = bmp[r][c];
+            Average = (rgb.red + rgb.green + rgb.blue)/3;
+            rgb.red = Average;
+            rgb.green = Average;
+            rgb.blue = Average;
+            bmp[r][c] = rgb;
+        }
+    }
      
     image.fromPixelMatrix(bmp);
     image.save("oldtimey.bmp");
