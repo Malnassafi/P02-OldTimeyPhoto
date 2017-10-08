@@ -11,27 +11,31 @@ int main()
     Pixel rgb;
     int Average;
     string fileName;
-   
-   // image.open("project2image.bmp");
-   // bmp = image.toPixelMatrix();
+    
+    image.open("project2image.bmp");
+    bmp = image.toPixelMatrix();
     
     // cout<<"project2image.bmp has been loaded. It is "<<bmp[0].size()<<" pixels wide and "<<bmp.size()<<" pixels high."<<endl;
     // cout<<bmp.size()<<" "<<endl; 
     // cout<<bmp[0].size()<<" "<<endl; 
     
-    cout<<"What's the file's name? [it must be in BMP format!]"<<endl;
-    cin>>fileName;/*
-    if(//file does not exist)
-    {   
-        cout<<*/
-
-
-
-
-
-    image.open(fileName);
-    cout<<fileName<<" has been loaded"<<endl;
-    bmp = image.toPixelMatrix();
+    do
+    {
+         cout<<"What's the file's name? [it must be in BMP format!]"<<endl;
+         cin>>fileName;
+        
+         if(fileName == project2image.bmp)
+         { 
+             image.open(fileName);
+             cout<<fileName<<" has been loaded"<<endl;
+             bmp = image.toPixelMatrix();
+         }
+             
+         else
+         {
+             cout<<"The file must be a 24 bit depth Windows BMP file. Please try again ^.^\n";
+         }
+    }while(fileName != project2image.bmp);
 
     // do a for loop to add rgb.red + rgb.blue + rgb.green = average/3
     //then make the average = rgb.red and rgb.blue and rgb.green
