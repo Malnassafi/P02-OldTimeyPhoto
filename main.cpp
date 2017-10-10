@@ -6,55 +6,48 @@ using namespace std;
 
 int main()
 {   
-    Bitmap image;
+    Bitmap image; 
     vector <vector <Pixel> > bmp;
     Pixel rgb;
-    int Average;
+    int average;
     string fileName;
-    
-    image.open("project2image.bmp");
-    bmp = image.toPixelMatrix();
-    
-    // cout<<"project2image.bmp has been loaded. It is "<<bmp[0].size()<<" pixels wide and "<<bmp.size()<<" pixels high."<<endl;
-    // cout<<bmp.size()<<" "<<endl; 
-    // cout<<bmp[0].size()<<" "<<endl; 
-    
+     // cout<<"project2image.bmp has been loaded. It is "<<bmp[0].size()<<" pixels wide and "<<bmp.size()<<" pixels high."<<endl;
+
     do
     {
          cout<<"What's the file's name? [it must be in BMP format!]"<<endl;
-         cin>>fileName;
-        
-         if(fileName == project2image.bmp)
+         cin>>fileName;            //saveing the users input in fileName 
+         image.open(fileName);     //reading  the file that the user inputed
+         image.isImage();          //cheaking if it is a valid image
+         if(image.isImage() == 1)  //if it is a valid image go through the if statement
          { 
-             image.open(fileName);
              cout<<fileName<<" has been loaded"<<endl;
-             bmp = image.toPixelMatrix();
+             bmp = image.toPixelMatrix(); //converting it to a pixel matrix
          }
              
-         else
+         else                      //if it is not a valid image it will output the else statement 
          {
              cout<<"The file must be a 24 bit depth Windows BMP file. Please try again ^.^\n";
          }
-    }while(fileName != project2image.bmp);
-
-    // do a for loop to add rgb.red + rgb.blue + rgb.green = average/3
-    //then make the average = rgb.red and rgb.blue and rgb.green
-    for(int r=0; r<bmp.size();r++)
+    
+    }while(image.isImage() == 0); // and also if the image is invalid it will loop again
+     
+    for(int r=0; r<bmp.size();r++) //this for loop will go throgh every row
     {
-        for(int c=0; c<bmp[0].size();c++)
+        for(int c=0; c<bmp[0].size();c++) //this for loop will go throgh every coloum
         {
-            rgb = bmp[r][c];
-            Average = (rgb.red + rgb.green + rgb.blue)/3;
-            rgb.red = Average;
-            rgb.green = Average;
-            rgb.blue = Average;
-            bmp[r][c] = rgb;
+            rgb = bmp[r][c]; //makeing rgb = bmp at row r and coloum c
+            average = (rgb.red + rgb.green + rgb.blue)/3; //setting average equal to the average of the red, green and blue so we added them and devided by 3 to optain it
+            rgb.red = average;   //setting red equal to the average
+            rgb.green = average; //setting green equal to the average
+            rgb.blue = average;  //setting blue equal to the average
+            bmp[r][c] = rgb; //saveing the changes done in rgb and puting it back in bmp at row r and colum c
         }
     }
-     
+    //updates the bitmap and saves it with the name thats stated below 
     image.fromPixelMatrix(bmp);
-    image.save("oldtimey.bmp");
-
+    image.save("oldTimey.bmp");
+    
     return 0;
 }
 
